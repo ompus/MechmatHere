@@ -1,0 +1,17 @@
+import 'package:flutter/material.dart';
+
+// будет хранить основную информацию
+// об элементах меню
+class MyTab {
+  final String name;
+  final MaterialColor color;
+  final IconData icon;
+
+  const MyTab({required this.name, required this.color, required this.icon});
+}
+
+// пригодиться для определения
+// выбранного элемента меню
+// у нас будет три пункта меню и три страницы:
+// домой, уведомления и профиль
+enum TabItem { HOME, NOTIFS, PROFILE }

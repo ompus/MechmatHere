@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812856292209",
+    "project_id": "mechmattut-d66a9",
+    "storage_bucket": "mechmattut-d66a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812856292209:android:1d898a1a69853e2b96fcd0",
+        "android_client_info": {
+          "package_name": "ompus.mechmat_tut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812856292209-dprcr2sa1lon5li41qmipr98urdphqeo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKaprA6tep9r-vyQqNIfx54XWjwjs4QJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812856292209-dprcr2sa1lon5li41qmipr98urdphqeo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
