@@ -46,9 +46,13 @@ class _CatDetailPageState extends State<CatDetailPage>
                   color: Colors.black12,
                   child: InkWell(
                     splashColor: Colors.black12,
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
+                    onTap: () async{
+                      await Navigator.push(context, MaterialPageRoute(
                           builder: (context) => EventDetailPage(null, event)));
+                      namesForCat = [];
+                      setState(() {
+                        buf = context.read<EventService>().getNamesByCat(namesForCat, widget.CatID);
+                      });
                     },
                     // далее указываем в качестве
                     // элемента Container с вложенным Text
