@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mechmat_tut/user_model.dart';
 
 class AuthenticationService {
@@ -80,6 +81,27 @@ class AuthenticationService {
 
     await userRef.doc(uid).set(userModel.toMap(userModel));
   }
+
+  Future<String?> ChangeProfile (String uid, String username,
+      String interests, String vk, String telegram, String phone, String photo) async
+  { // сделать обновление отдельных компонентов
+    if (username == "") return "Поле с ником не может быть пустым"; else
+    if (vk != "" &&  !RegExp(r"vk.com/+[a-zA-Z0-9.a-zA-Z0-9_]")
+        .hasMatch(vk)) return "Введите ссылку на профиль в ВК в формате vk.com/*"; else
+    if (telegram != "" &&  !RegExp(r"t.me/+[a-zA-Z0-9a-zA-Z0-9_]")
+        .hasMatch(telegram)) return "Введите ссылку на профиль в Telegram в формате t.me/*"; else
+    if (phone != "" && !(RegExp(r"8+[0-9]{9}").hasMatch(phone)||
+        RegExp(r"\+7+[0-9]{9}").hasMatch(phone))) return "Введите телефон в формате 8********** или +7**********";
+
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"username": username});
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"interests": interests});
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"vk": vk});
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"telegram": telegram});
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"phone": phone});
+    FirebaseFirestore.instance.collection("users").doc(uid).update({"photo": photo});
+    return "Изменения сохранены";
+  }
+
   User? getUser() {
     try {
       return _firebaseAuth.currentUser;
