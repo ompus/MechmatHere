@@ -46,9 +46,12 @@ class _NotifEventPageState extends State<NotifEventPage>
                   color: Colors.black12,
                   child: InkWell(
                     splashColor: Colors.black12,
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
+                    onTap: () async {
+                      await Navigator.push(context, MaterialPageRoute(
                           builder: (context) => EventDetailPage(null, event)));
+                      setState(() {
+                        buf = context.read<AuthenticationService>().getUserFromDB(context.read<AuthenticationService>().getUser()!.uid);
+                      });
                     },
                     // далее указываем в качестве
                     // элемента Container с вложенным Text
