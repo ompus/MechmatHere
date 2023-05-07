@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mechmat_tut/event_service.dart';
 import 'package:mechmat_tut/pages/home_page.dart';
+import 'package:mechmat_tut/user_model.dart';
 import 'AddEvent.dart';
 import 'authentication_service.dart';
 import 'ui/home.dart';
@@ -46,9 +47,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.amber,
         ),
-        initialRoute: '/',
+        initialRoute: '/auth',
         routes: {
-          '/': (context) => Splash(),
+          //'/': (context) => Splash(),
           '/auth': (context) => AuthenticationWrapper(),
           '/signin': (context) => SignIn(),
           '/signup': (context) => SignUp(),
