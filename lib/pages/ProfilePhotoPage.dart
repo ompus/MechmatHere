@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mechmat_tut/user_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../ChangeProfile.dart';
 import '../authentication_service.dart';
 import 'package:provider/provider.dart';
 
@@ -114,7 +116,7 @@ class _ProfilePhotoPageState extends State<ProfilePhotoPage>
                    ),
                    Visibility(
                        child: SizedBox(width: 15),
-                       visible: telegram == "" ? false: true
+                       visible: vk == "" ? false: true
                    ),
                    Visibility(
                      child: InkWell(
@@ -130,7 +132,7 @@ class _ProfilePhotoPageState extends State<ProfilePhotoPage>
                    ),
                    Visibility(
                        child: SizedBox(width: 15),
-                       visible: phone == "" ? false: true
+                       visible: telegram == "" ? false: true
                    ),
                    Visibility(
                      child: InkWell(
@@ -146,6 +148,36 @@ class _ProfilePhotoPageState extends State<ProfilePhotoPage>
                    ),
                  ]
              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Center(
+                child: Container(
+                  height: 40,
+                  width: 300,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 6.0,
+                      primary: Colors.amber, // background
+                      onPrimary: Colors.black, // foreground
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                    ),
+                    onPressed: () async {
+                      await Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => ChangeProfilePage()
+                      ));
+                      setState(() {
+                        s = context.read<AuthenticationService>().getUserFromDB(user!.uid);
+                      });
+                    },
+                    child: Text('Редактировать профиль'),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
             ],
           ),
         )
