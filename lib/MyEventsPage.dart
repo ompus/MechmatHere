@@ -27,10 +27,10 @@ class _MyEventsPageState extends State<MyEventsPage>
     super.initState();
   }
 
-  callback(){
-    setState(() {
-    });
-  }
+  //callback(){
+    //setState(() {
+    //});
+  //}
   @override
   Widget build(BuildContext context) {
     buf.then((value){
@@ -45,10 +45,14 @@ class _MyEventsPageState extends State<MyEventsPage>
           actions: [
             IconButton(
               icon: Icon(Icons.add), color: Colors.black,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
+              onPressed: () async{
+                await Navigator.push(context, MaterialPageRoute(
                     builder: (context) => AddEvent()
                 ));
+                namesForUser = [];
+                setState(() {
+                  buf = context.read<EventService>().getNamesByUser(namesForUser);
+                });
               },)],
         ),
         body: Padding(
@@ -59,9 +63,13 @@ class _MyEventsPageState extends State<MyEventsPage>
                   color: Colors.black12,
                   child: InkWell(
                     splashColor: Colors.black12,
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
+                    onTap: () async {
+                      await Navigator.push(context, MaterialPageRoute(
                           builder: (context) => EventDetailPage(null, event)));
+                      namesForUser = [];
+                      setState(() {
+                        buf = context.read<EventService>().getNamesByUser(namesForUser);
+                      });
                     },
                     // далее указываем в качестве
                     // элемента Container с вложенным Text
